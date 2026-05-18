@@ -158,54 +158,7 @@ These transforms expose the model to more diverse representations of each class,
 
 ---
 
-### Part 5: Visualization & Overfitting (Activity 3A)
-
-**Q: What signs indicated overfitting in your first model?**
-
-The most telling sign was the **large divergence** between training and validation metrics:
-- Training accuracy reached **99.98%** by epoch 10
-- Validation accuracy plateaued at **64.56%**
-- Validation loss *increased* from epoch 7 onward while training loss continued to drop
-
-This gap is a textbook sign of overfitting — the model learned the training data's specific patterns rather than generalizable features.
-
-**Q: How did data augmentation affect validation accuracy?**
-
-After adding augmentation and dropout, the validation accuracy remained comparable (~62%) but the **validation loss decreased more steadily** (from ~2.38 to ~1.28), and the training accuracy no longer shot up to near-100%. This indicates the model is learning more robust features rather than memorizing data.
-
----
-
-### Part 6: Model Improvement
-
-**Q: What is the purpose of dropout layers?**
-
-Dropout randomly deactivates a fraction of neurons (30% in this case) during each training step. This prevents individual neurons from becoming overly specialized, forcing the network to learn redundant representations and improving generalization.
-
-**Q: Why does data augmentation improve generalization?**
-
-Each epoch, the model sees slightly different versions of the same images. This is functionally equivalent to having a larger dataset, and it prevents the model from associating a specific background, angle, or lighting condition with a class label.
-
----
-
-### Part 7: Performance Comparison
-
-| Metric | Initial Model | Improved Model |
-|--------|--------------|----------------|
-| Epochs | 10 | 15 |
-| Final Train Accuracy | 99.98% | 63.00% |
-| Final Val Accuracy | **64.56%** | **62.16%** |
-| Final Train Loss | 0.0037 | 1.2172 |
-| Final Val Loss | 2.4213 | 1.2831 |
-| Overfitting | **Severe** | **Reduced** |
-| Train–Val Accuracy Gap | ~35% | ~1% |
-
-> **Key Insight:** The improved model's validation loss (1.28) is nearly **half** that of the initial model (2.42), showing that augmentation and dropout substantially improved generalization even with similar raw accuracy.
-
-The technique that contributed most to improvement was **data augmentation** — it addressed the root cause of overfitting by increasing effective dataset variability.
-
----
-
-### Part 8: Deployment & Application
+### Part 5: Deployment & Application
 
 **Q: Why is saving the model important?**
 
@@ -233,6 +186,52 @@ The saved `.keras` model can be:
 
 ---
 
+### Part 6: Visualization & Overfitting (Activity 3A)
+
+**Q: What signs indicated overfitting in your first model?**
+
+The most telling sign was the **large divergence** between training and validation metrics:
+- Training accuracy reached **99.98%** by epoch 10
+- Validation accuracy plateaued at **64.56%**
+- Validation loss *increased* from epoch 7 onward while training loss continued to drop
+
+This gap is a textbook sign of overfitting — the model learned the training data's specific patterns rather than generalizable features.
+
+**Q: How did data augmentation affect validation accuracy?**
+
+After adding augmentation and dropout, the validation accuracy remained comparable (~62%) but the **validation loss decreased more steadily** (from ~2.38 to ~1.28), and the training accuracy no longer shot up to near-100%. This indicates the model is learning more robust features rather than memorizing data.
+
+---
+
+### Part 7: Model Improvement
+
+**Q: What is the purpose of dropout layers?**
+
+Dropout randomly deactivates a fraction of neurons (30% in this case) during each training step. This prevents individual neurons from becoming overly specialized, forcing the network to learn redundant representations and improving generalization.
+
+**Q: Why does data augmentation improve generalization?**
+
+Each epoch, the model sees slightly different versions of the same images. This is functionally equivalent to having a larger dataset, and it prevents the model from associating a specific background, angle, or lighting condition with a class label.
+
+---
+
+### Part 8: Performance Comparison
+
+| Metric | Initial Model | Improved Model |
+|--------|--------------|----------------|
+| Epochs | 10 | 15 |
+| Final Train Accuracy | 99.98% | 63.00% |
+| Final Val Accuracy | **64.56%** | **62.16%** |
+| Final Train Loss | 0.0037 | 1.2172 |
+| Final Val Loss | 2.4213 | 1.2831 |
+| Overfitting | **Severe** | **Reduced** |
+| Train–Val Accuracy Gap | ~35% | ~1% |
+
+> **Key Insight:** The improved model's validation loss (1.28) is nearly **half** that of the initial model (2.42), showing that augmentation and dropout substantially improved generalization even with similar raw accuracy.
+
+The technique that contributed most to improvement was **data augmentation** — it addressed the root cause of overfitting by increasing effective dataset variability.
+
+---
 
 Google Colab Link: https://colab.research.google.com/drive/1LSiaExbQ3SKB0UEVdjAJEYavydWr3-kW?usp=sharing
 
